@@ -1,5 +1,12 @@
+"""
+Configuration settings for the RAG pipeline.
+
+Loads environment variables and defines paths, model settings, and table metadata.
+"""
+
 import os
 from pathlib import Path
+
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -18,7 +25,17 @@ TABLE_FILES = {
 }
 
 TABLE_DESCRIPTIONS = {
-    "clients": "Contains client information including client_id (primary key), client_name, industry, and country.",
-    "invoices": "Contains invoice records with invoice_id (primary key), client_id (foreign key to clients), invoice_date, due_date, status (Paid/Overdue/Draft), currency, and fx_rate_to_usd.",
-    "invoice_line_items": "Contains line items for invoices with line_id (primary key), invoice_id (foreign key to invoices), service_name, quantity, unit_price, and tax_rate. Line total with tax = quantity * unit_price * (1 + tax_rate).",
+    "clients": (
+        "Contains client information including client_id (primary key), "
+        "client_name, industry, and country."
+    ),
+    "invoices": (
+        "Contains invoice records with invoice_id (primary key), client_id (foreign key), "
+        "invoice_date, due_date, status (Paid/Overdue/Draft), currency, and fx_rate_to_usd."
+    ),
+    "invoice_line_items": (
+        "Contains line items for invoices with line_id (primary key), invoice_id (foreign key), "
+        "service_name, quantity, unit_price, and tax_rate. "
+        "Line total with tax = quantity * unit_price * (1 + tax_rate)."
+    ),
 }
